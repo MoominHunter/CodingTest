@@ -1,0 +1,16 @@
+-- BOOK: BOOK_ID, CATEGORY, AUTHOR_ID, PRICE, PUBLISHED_DATE
+-- AUTHOR: AUTHOR_ID, AUTHOR_NAME
+
+-- 카테고리가 경제인 도서들의 정보를 조회
+-- 출판일 기준 오름차순 정렬
+
+SELECT b.BOOK_ID
+        , a.AUTHOR_NAME
+        , DATE_FORMAT(b.PUBLISHED_DATE, '%Y-%m-%d') 
+                                AS PUBLISHED_DATE
+FROM BOOK AS b
+    JOIN AUTHOR AS a
+    ON b.AUTHOR_ID = a.AUTHOR_ID
+WHERE CATEGORY LIKE '경제'
+ORDER BY b.PUBLISHED_DATE
+;
