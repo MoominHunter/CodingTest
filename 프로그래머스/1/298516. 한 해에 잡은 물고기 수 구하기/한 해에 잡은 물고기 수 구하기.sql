@@ -1,0 +1,9 @@
+-- FISH_INFO: ID, FISH_TYPE, LENGTH, TIME
+
+-- 2021년도에 잡은 물고기 수를 출력하기
+-- 조건문 TIME이 2021인 count(*)
+
+SELECT COUNT(*) AS FISH_COUNT
+FROM FISH_INFO
+WHERE year(TIME) LIKE '2021'
+;
