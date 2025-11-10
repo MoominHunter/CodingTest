@@ -1,0 +1,9 @@
+-- FISH_INFO: ID, FISH_TYPE, LENGTH, TIME
+
+SELECT CONCAT(LENGTH, 'cm') AS MAX_LENGTH
+FROM FISH_INFO
+WHERE LENGTH = (
+                SELECT MAX(LENGTH)
+                FROM FISH_INFO
+                )
+;
