@@ -1,0 +1,5 @@
+SELECT species, body_mass_g
+FROM penguins
+WHERE (species IS NOT NULL) & (body_mass_g IS NOT NULL)
+ORDER BY body_mass_g DESC, species ASC
+;
