@@ -1,34 +1,30 @@
-# [Day 02] 서울숲에 놀러 가기 좋은 날
+# [Day 03] 펭귄의 종과 몸무게 조사하기
 
-[문제 링크](https://solvesql.com/problems/movies-about-love/) 
+[문제 링크](https://solvesql.com/problems/species-and-mass-of-penguins/) 
 
 ### 제출 일자
 
-2025년 12월 2일 15:40
+2025년 12월 3일 23:56
 
 ### 문제 설명
 
-서울숲 일별 평균 대기 오염도 데이터베이스에는 2022년 1년 동안 서울숲 측정소에서 측정한 일별 평균 대기질 정보가 들어있습니다. 
-공기질 지수에 관한 정보에 따르면, 야외 활동을 하기에 좋은 대기 상태는 초미세먼지(PM2.5) 농도가 9㎍/㎥ 이하여야 합니다.
+Palmer Penguins 데이터베이스는 남극 Palmer Archipelago 지역에 서식 중인 펭귄의 종, 서식지, 신체 특징 정보가 들어있습니다.
 
-2022년 12월 중 서울숲에 놀러가 야외 활동을 하기 좋은 날을 출력하는 쿼리를 작성해주세요. 
-쿼리 결과에는 날짜가 출력되는 컬럼 하나만 있어야 하며, 날짜는 오름차순으로 정렬되어 있어야 합니다.
+펭귄의 종과 펭귄의 몸무게의 관계에 대해서 알아보기 위해 기초 데이터를 추출하려고 합니다. penguins 테이블에서 펭귄의 종, 몸무게 정보가 담긴 열을 출력하는 쿼리를 작성해주세요. 펭귄의 종 또는 몸무게 데이터가 없는 개체는 쿼리 결과에서 제외해주세요.
+
+결과는 펭귄의 몸무게가 무거운 순서대로 정렬하고, 만약 몸무게가 같다면 펭귄의 종 이름으로 오름차순 정렬해주세요. 쿼리 결과에는 아래 컬럼이 포함되어 있어야 합니다.
 
 
-good_day: 서울숲에서 야외 활동을 하기 좋은 날
+species: 펭귄의 종
+body_mass_g: 펭귄의 몸무게(g)
 
 ---
 ### 정답
 
 ```sql
-SELECT
-  measured_at AS good_day
-FROM
-  measurements
-WHERE
-  (measured_at LIKE '2022-12%') 
-  && (pm2_5 <= 9)
-ORDER BY
-  measured_at;
-
+SELECT species, body_mass_g
+FROM penguins
+WHERE (species IS NOT NULL) & (body_mass_g IS NOT NULL)
+ORDER BY body_mass_g DESC, species ASC
+;
 ```
