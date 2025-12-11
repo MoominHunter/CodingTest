@@ -32,38 +32,25 @@
 ### 정답
 
 ```sql
-WITH
-  base AS (
-    SELECT
-      r.athlete_id AS id,
-      a.name,
-      g.year,
-      LAG(g.year) OVER (
-        PARTITION BY
-          r.athlete_id
-        ORDER BY
-          g.year
-      ) AS prev_year
-    FROM
-      records r
-      JOIN athletes a ON r.athlete_id = a.id
-      JOIN games g ON g.id = r.game_id
-      JOIN teams t ON t.id = r.team_id
-      JOIN events e ON e.id = r.event_id
-    WHERE
-      t.team = 'KOR'
-      AND e.event = 'Volleyball Women''s Volleyball'
-      AND g.year <= 2016
-  )
-SELECT DISTINCT
-  id,
-  name
-FROM
-  base
+SELECT
+  a.id        AS id,
+  a.name      AS name,
+  GROUP_CONCAT(DISTINCT r.medal ORDER BY r.medal SEPARATOR ', ') AS medals
+FROM records r
+JOIN athletes a ON r.athlete_id = a.id
+JOIN teams    t ON r.team_id    = t.id
+JOIN events   e ON r.event_id   = e.id
+JOIN games    g ON r.game_id    = g.id
 WHERE
-  prev_year IS NOT NULL
-  AND year - prev_year = 4
+  t.team = 'KOR'
+  AND e.event = 'Volleyball Women''s Volleyball'
+  AND g.year <= 2016
+  AND r.medal IS NOT NULL
+GROUP BY
+  a.id,
+  a.name
 ORDER BY
-  id;
+  a.id;
+
 
 ```
