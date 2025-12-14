@@ -13,9 +13,9 @@ DVD Rental Store 데이터베이스에는 어느 한 DVD 대여 프랜차이즈�
 
 쿼리 결과에는 아래 컬럼이 있어야 하며, 매출액 기준 내림차순으로 정렬되어 있어야 합니다.
 
-first_name: 배우의 이름
-last_name: 배우의 성
-total_revenue: 배우 출연작들의 총 매출
+- first_name: 배우의 이름
+- last_name: 배우의 성
+- total_revenue: 배우 출연작들의 총 매출
 
 
 ---
