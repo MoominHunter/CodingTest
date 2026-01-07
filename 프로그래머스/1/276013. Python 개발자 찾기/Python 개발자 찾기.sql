@@ -1,0 +1,17 @@
+-- DEVELOPER_INFOS: ID, FIRST_NAME, LAST_NAME, EMAIL, SKILL_1, SKILL_2, SKILL_3
+
+-- Python 스킬을 가진 개발자의 정보를 조회하라
+
+SELECT 
+    ID
+    , EMAIL
+    , FIRST_NAME
+    , LAST_NAME
+FROM DEVELOPER_INFOS
+WHERE
+    SKILL_1 LIKE 'Python'
+    OR SKILL_2 LIKE 'Python'
+    OR SKILL_3 LIKE 'Python'
+ORDER BY
+    ID
+;
